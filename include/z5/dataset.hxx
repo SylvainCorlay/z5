@@ -511,7 +511,7 @@ namespace z5 {
             checkChunk(chunk);
 
             // get the correct chunk size and declare the out data
-            size_t chunkSize = isZarr_ ? chunkSize_ : io_->getChunkSize(chunk);
+            const size_t chunkSize = isZarr_ ? chunkSize_ : io_->getChunkSize(chunk);
             std::vector<T> dataOut;
 
             // reverse the endianness if necessary

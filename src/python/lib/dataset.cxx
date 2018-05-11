@@ -12,6 +12,7 @@
 // for xtensor numpy bindings
 #include "xtensor-python/pyarray.hpp"
 #include "xtensor-python/pytensor.hpp"
+#include "xtensor/xadapt.hpp"
 
 namespace py = pybind11;
 
@@ -43,6 +44,32 @@ namespace z5 {
         return out;
     }
 
+    template<class T>
+    inline xt::pyarray<T> readPyChunk(const Dataset & ds,
+                                      const types::ShapeType & chunkId) {
+
+        types::ShapeType chunkShape;
+        ds.getChunkShape(chunkId, chunkShape);
+        xt::pyarray<T> out(chunkShape);
+        ds.readChunk(chunkId, &out(0));
+
+        // Should work without this, cause we have a single chunk
+        // const size_t chunkSize = ds.getChunkSize(chunkId);
+        // std::vector<T> out_buffer(chunkSize);
+        // ds.readChunk(chunkId, &out_buffer[0]);
+        // xt::pyarray<T> out(chunkShape);
+        // out = xt::adapt(out_buffer, chunkShape);
+        // return out;
+    }
+
+    template<class T>
+    inline xt::pyarray<T> writePyChunk(const Dataset & ds,
+                                       const types::ShapeType & chunkId,
+                                       const xt::pyarray<T> & data) {
+
+        ds.writeChunk(chunkId, &data(0));
+    }
+
 
     template<class T>
     void exportIoT(py::module & module) {
@@ -70,6 +97,18 @@ namespace z5 {
                    &convertPyArrayToFormat<T>,
                    py::arg("ds"), py::arg("in").noconvert(),
                    py::call_guard<py::gil_scoped_release>());
+
+        // export reading chunks
+        module.def("read_chunk",
+                   &readPyChunk<T>,
+                   py::arg("ds"), py::arg("chunkId"),
+                   py::call_guard<py::gil_scoped_release>());
+
+        // export writing chunks
+        module.def("write_chunk",
+                   &writePyChunk<T>,
+                   py::arg("ds"), py::arg("chunkId"), py::arg("data"),
+                   py::call_guard<py::gil_scoped_release>());
     }
 
 
@@ -81,7 +120,7 @@ namespace z5 {
             //
             // find min and max chunks along given dimension
             //
-            .def("findMinimumCoordinates", [](const Dataset & ds, const unsigned dim){
+            .def("find_minimum_coordinates", [](const Dataset & ds, const unsigned dim){
                 types::ShapeType chunk;
                 {
                     py::gil_scoped_release allowThreads;
@@ -89,7 +128,7 @@ namespace z5 {
                 }
                 return chunk;
             })
-            .def("findMaximumCoordinates", [](const Dataset & ds, const unsigned dim){
+            .def("find_maximum_coordinates", [](const Dataset & ds, const unsigned dim){
                 types::ShapeType chunk;
                 {
                     py::gil_scoped_release allowThreads;
@@ -97,7 +136,7 @@ namespace z5 {
                 }
                 return chunk;
             })
-            .def("chunkExists", [](const Dataset & ds, const types::ShapeType & chunkIndices){
+            .def("chunk_exists", [](const Dataset & ds, const types::ShapeType & chunkIndices){
                 return ds.chunkExists(chunkIndices);
             })
 
@@ -139,10 +178,22 @@ namespace z5 {
 
                     return openDataset(tup[0].cast<std::string>());
                 }
-            ))
-        ;
+            ));
 
-        module.def("open_dataset",[](const std::string & path, const FileMode::modes mode){
+            // find chunks in request
+            module.def("get_chunk_requests", [](const Dataset & ds,
+                                                const types::ShapeType & offset,
+                                                const types::ShapeType & shape) {
+                    std::vector<types::ShapeType> chunks;
+                    {
+                        py::gil_scoped_release allowThreads;
+                        ds.getChunkRequests(offset, shape, chunks);
+                    }
+                    return chunks;
+                }
+            );
+
+        module.def("open_dataset", [](const std::string & path, const FileMode::modes mode){
             return openDataset(path, mode);
         });
 
