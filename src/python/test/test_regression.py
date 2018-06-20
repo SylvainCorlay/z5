@@ -79,13 +79,13 @@ class TestN5Regression(RegressionTestMixin, unittest.TestCase):
     # compressions_write = {'raw': 0.0085, 'gzip': 0.55}
     # more lenient values for travis
     compressions_read = {'raw': 0.015, 'gzip': 0.15}
-    compressions_write = {'raw': 0.015, 'gzip': 0.75}
+    compressions_write = {'raw': 0.02, 'gzip': 0.75}
 
 
 class TestZarrRegression(RegressionTestMixin, unittest.TestCase):
     data_format = 'zarr'
-    compressions_read = {'raw': 0.015, 'zlib': 0.15}
-    compressions_write = {'raw': 0.02, 'zlib': 0.75}
+    compressions_read = {'raw': 0.02, 'zlib': 0.15}
+    compressions_write = {'raw': 0.025, 'zlib': 0.75}
 
 
 if __name__ == '__main__':
