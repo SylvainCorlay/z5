@@ -15,7 +15,7 @@ environment:
 
 init:
   - echo %MINICONDA%
-  - set PATH=%MINICONDA%;%MINICONDA\\Scripts%;%MINICONDA\\Library%;%MINICONDA\\Library\\bin%;%PATH%
+  - set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library;%MINICONDA%\\Library\\bin;%PATH%
 
 
 install:
