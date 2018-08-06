@@ -4,7 +4,7 @@ platform:
 environment:
   matrix:
     - PY_VERSION: "3.6"
-    VC_VERSION: "14"
+      VC_VERSION: "14"
 
 build_script:
     # This is a small script that takes the PATH variable and transforms its entries
