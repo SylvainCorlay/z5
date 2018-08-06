@@ -11,12 +11,12 @@ environment:
   matrix:
     - PY_VERSION: "3.6"
       VC_VERSION: "14"
+      MINICONDA: C:\conda
 
 build_script:
   - echo %MINICONDA%
-  - echo %PATH%
-  - conda install python=3.6 xtensor-python boost c-blosc
   - set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library;%MINICONDA%\\Library\\bin;%PATH%
+  - conda install python=3.6 xtensor-python boost c-blosc
   - conda install -c conda-forge --yes xtensor-python c-blosc boost bzip2
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
