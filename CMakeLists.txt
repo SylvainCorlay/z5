@@ -67,7 +67,9 @@ include_directories(${CMAKE_SOURCE_DIR}/external/json/include)
 # Set up conda env
 ###############################
     
-# This does not work within travis for some reason
+# This does not work within travis or appveyor, because 
+# we set the CMAKE_PREFIX_PATH
+# TODO rename this to USE_CONDA_PREFIX or similar
 if(NOT WITHIN_TRAVIS)
     # Find the current conda env and set it as CMAKE_PREFIX_PATH
     execute_process(COMMAND bash -c "conda info | grep 'active env location' | awk '{print $5}'"
