@@ -86,6 +86,8 @@ if(NOT WITHIN_TRAVIS)
     string(REGEX REPLACE "\n$" "" CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}")
 endif()
 
+MESSAGE(STATUS "Setting cmake prefix path to ${CMAKE_PREFIX_PATH}")
+
 # Set CMAKE_PREFIX_PATH to the conda env, but allow changing it
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} CACHE PATH "")
 
