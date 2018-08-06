@@ -25,6 +25,7 @@ build_script:
   - if "%PY_VERSION%" == "3.6" set PATH=C:\\Miniconda3-x64\\Scripts;%PATH%
   - if "%PY_VERSION%" == "3.6" conda create -c conda-forge -q --yes -n python python=%PY_VERSION% xtensor-python c-blosc boost bzip2
   - activate python
+  - echo "Conda active env:" 
   - echo "%CONDA_ACTIVE_ENV%"
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
