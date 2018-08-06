@@ -15,10 +15,10 @@ build_script:
     # thus avoiding an issue with conda. See also:
     # https://github.com/conda/conda/issues/1923
     # It might be that this will be solved in future conda versions.
-    - config\\shorten_path.bat > path.txt
-    - set /p PATH=<path.txt
+    # - config\\shorten_path.bat > path.txt
+    # - set /p PATH=<path.txt
 	# we may want to support more python versions in the future
-    - if "%PY_VERSION%" == "3.6" set PATH=C:\\Miniconda3-x64\\Scripts;%PATH%
+    # - if "%PY_VERSION%" == "3.6" set PATH=C:\\Miniconda3-x64\\Scripts;%PATH%
     - if "%PY_VERSION%" == "3.6" conda create -q --yes -n python python=%PY_VERSION% xtensor-python c-blosc boost
     - activate python
     - cd %APPVEYOR_BUILD_FOLDER%
