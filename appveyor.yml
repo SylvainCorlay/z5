@@ -14,7 +14,8 @@ environment:
       MINICONDA: C:\conda
 
 build_script:
-  - echo %MINICONDA%
+  - config\\shorten_path.bat > path.txt
+  - set /p PATH=<path.txt
   - set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%MINICONDA%\\Library;%MINICONDA%\\Library\\bin;%PATH%
   - conda install python=3.6 xtensor-python boost c-blosc
   - conda install -c conda-forge --yes xtensor-python c-blosc boost bzip2
