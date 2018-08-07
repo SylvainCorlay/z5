@@ -350,7 +350,7 @@ inline void parallel_foreach_impl(
 
     // NIFTY_CHECK(workload == nItems || nItems == 0, "parallel_foreach(): Mismatch between num items and begin/end.");
     const float workPerThread = float(workload)/pool.nThreads();
-    const std::ptrdiff_t chunkedWorkPerThread = (std::max)<std::ptrdiff_t>(int(workPerThread/3.0f + 0.5f), 1);
+    const std::ptrdiff_t chunkedWorkPerThread = (std::max<std::ptrdiff_t>)(int(workPerThread/3.0f + 0.5f), 1);
 
     std::vector<std::future<void> > futures;
     for( ;iter<end; iter+=chunkedWorkPerThread)
@@ -391,7 +391,7 @@ inline void parallel_foreach_impl(
 
     std::ptrdiff_t workload = nItems;
     const float workPerThread = float(workload)/pool.nThreads();
-    const std::ptrdiff_t chunkedWorkPerThread = (std::max)<std::ptrdiff_t>(int(workPerThread/3.0f+0.5f), 1);
+    const std::ptrdiff_t chunkedWorkPerThread = (std::max<std::ptrdiff_t>)(int(workPerThread/3.0f+0.5f), 1);
 
     std::vector<std::future<void> > futures;
     for(;;)
