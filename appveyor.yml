@@ -34,4 +34,4 @@ build_script:
   - mkdir build
   - cd build
   - cmake .. -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="%CONDA_ACTIVE_ENV%" -DWITH_BLOSC=ON -DWITH_ZLIB=ON -DWITH_BZIP2=ON -DWITHIN_TRAVIS=ON -DBOOST_INCLUDEDIR=%BOOST_INCLUDE% -DDISABLE_VS2017=ON
-  - cmake --build .
+  - cmake --build . --config Release
