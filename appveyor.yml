@@ -38,6 +38,7 @@ build_script:
   - activate python
   - dir %MINICONDA%
   - set CONDA_ACTIVE_ENV=C:\\z5-conda\\envs\\python
+  - dir CONDA_ACTIVE_ENV
   - echo %CONDA_ACTIVE_ENV%
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
   - conda install -c conda-forge --yes xtensor-python c-blosc boost bzip2
