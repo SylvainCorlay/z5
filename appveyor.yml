@@ -36,7 +36,7 @@ build_script:
   # we may want to support more python versions in the future
   - if "%PY_VERSION%" == "3.6" conda create -c conda-forge -q --yes -n python python=%PY_VERSION%
   - activate python
-  - set CONDA_ACTIVE_ENV=C:\\Miniconda3-x64\\envs\\python
+  - set CONDA_ACTIVE_ENV=%MINICONDA%\\envs\\python
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
   - conda install -c conda-forge --yes xtensor-python c-blosc boost bzip2
   - cd %APPVEYOR_BUILD_FOLDER%
