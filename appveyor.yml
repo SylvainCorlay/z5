@@ -25,7 +25,7 @@ init:
 
 build_script:
   # we may want to support more python versions in the future
-  - dir C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin
+  - dir "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin"
   - conda create -c conda-forge -q --yes -n python python=3.6 xtensor-python c-blosc boost bzip2
   - activate python
   - set CONDA_ACTIVE_ENV=%MINICONDA%\envs\python
