@@ -26,11 +26,12 @@ build_script:
   - if "%PY_VERSION%" == "3.6" conda create -c conda-forge -q --yes -n python python=%PY_VERSION%
   - activate python
   - set CONDA_ACTIVE_ENV=C:\\Miniconda3-x64\\envs\\python
-  - echo "Conda active env:" 
-  - echo "%CONDA_ACTIVE_ENV%"
+  - set BOOST_ROOT=%CONDA_ACTIVE_ENV%\\Library
+  - echo "BOOST_ROOT:" 
+  - echo "%BOOST_ROOT%"
   - conda install -c conda-forge --yes xtensor-python c-blosc boost bzip2
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G "Visual Studio %VC_VERSION% Win64" -DCMAKE_PREFIX_PATH="%CONDA_ACTIVE_ENV%" -DWITH_BLOSC=ON -DWITH_ZLIB=ON -DWITH_BZIP2=ON -DWITHIN_TRAVIS=ON
+  - cmake .. -G "Visual Studio %VC_VERSION% Win64" -DCMAKE_PREFIX_PATH="%CONDA_ACTIVE_ENV%" -DWITH_BLOSC=ON -DWITH_ZLIB=ON -DWITH_BZIP2=ON -DWITHIN_TRAVIS=ON -DBOOST_ROOT=%BOOST_ROOT%
   - cmake --build .
