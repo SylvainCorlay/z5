@@ -26,7 +26,7 @@ init:
 build_script:
   # we may want to support more python versions in the future
   - conda update -q --yes conda
-  - conda create -c conda-forge -q --yes -n python python=3.6 xtensor-python c-blosc boost bzip2
+  - conda create -c conda-forge -q --yes -n python python=3.6 xtensor-python c-blosc boost bzip2 vs2015_runtime=15.5 vc=14.1
   - activate python
   - set CONDA_ACTIVE_ENV=%MINICONDA%\envs\python
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
