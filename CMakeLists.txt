@@ -50,6 +50,9 @@ option(WITH_MARRAY OFF)
 # adaptions to travis build
 option(WITHIN_TRAVIS OFF)
 
+# build c++ tests
+option(BUILD_TESTS OFF)
+
 
 ###############################
 # Include git submodules
