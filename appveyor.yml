@@ -36,6 +36,7 @@ build_script:
   # we may want to support more python versions in the future
   - if "%PY_VERSION%" == "3.6" conda create -c conda-forge -q --yes -n python python=%PY_VERSION%
   - activate python
+  - dir %MINICONDA%
   - set CONDA_ACTIVE_ENV=C:\\z5-conda\\envs\\python
   - echo %CONDA_ACTIVE_ENV%
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
