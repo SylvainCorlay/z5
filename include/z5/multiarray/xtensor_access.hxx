@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 #include "z5/dataset.hxx"
 #include "z5/types/types.hxx"
 #include "z5/multiarray/xtensor_util.hxx"
