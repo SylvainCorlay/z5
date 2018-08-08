@@ -29,12 +29,12 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update conda
   # - conda info -a
-  - conda install -c conda-forge -c QuantStack xtensor-python c-blosc boost bzip2 xtl==0.4.13
+  - conda install -c conda-forge xtensor-python boost bzip2 # c-blosc 
   # vs2015_runtime=15.5 vc=14.1
   - set CONDA_ACTIVE_ENV=%MINICONDA%
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="%CONDA_ACTIVE_ENV%" -DWITH_BLOSC=ON -DWITH_ZLIB=ON -DWITH_BZIP2=ON -DWITHIN_TRAVIS=ON -DBOOST_INCLUDEDIR=%BOOST_INCLUDE% -DBUILD_TESTS=OFF
+  - cmake .. -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="%CONDA_ACTIVE_ENV% -DWITH_ZLIB=ON -DWITH_BZIP2=ON -DWITHIN_TRAVIS=ON -DBOOST_INCLUDEDIR=%BOOST_INCLUDE% -DBUILD_TESTS=OFF
   - cmake --build . --config Release
