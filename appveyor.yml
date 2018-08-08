@@ -28,8 +28,6 @@ init:
 install:
   - set CONDA_ACTIVE_ENV=%MINICONDA%
   - set BOOST_INCLUDE=%CONDA_ACTIVE_ENV%\\Library\\include
-  - echo %CONDA_ACTIVE_ENV%
-  - dir %CONDA_ACTIVE_ENV%
   - conda config --set always_yes yes --set changeps1 no
   - conda update conda
   # - conda info -a
