@@ -12,6 +12,10 @@ namespace z5 {
 
         std::cout << "Open Dataset cxx" << std::endl;
         // read the data type from the metadata
+        std::cout << "making fs path from" << std::endl;
+        std::cout << path << std::endl;
+        fs::path pp(path);
+        std::cout << "path " << pp.string() << std::endl;
         std::cout << "Handle" << std::endl;
         handle::Dataset h(path, mode);
         std::cout << "Dtype" << std::endl;
