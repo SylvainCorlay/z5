@@ -48,4 +48,5 @@ before_test:
   - set PYTHONPATH=.\python;%PYTHONPATH%
 
 test_script:
-  - python -m unittest discover -v python/test 
+  - python python/test/test_attributes.py
+  # - python -m unittest discover -v python/test 

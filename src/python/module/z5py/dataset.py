@@ -310,6 +310,7 @@ class Dataset(object):
 
         # get the dataset and write data if necessary
         print(path)
+        assert os.path.exists(path), path
         ds = cls(path, open_dataset(path, mode), n_threads)
         if have_data:
             ds[:] = data
