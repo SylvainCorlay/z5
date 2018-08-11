@@ -309,6 +309,7 @@ class Dataset(object):
                                    compression, compression_options)
 
         # get the dataset and write data if necessary
+        print(path)
         ds = cls(path, open_dataset(path, mode), n_threads)
         if have_data:
             ds[:] = data

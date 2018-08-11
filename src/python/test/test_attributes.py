@@ -56,17 +56,14 @@ class AttributesTestMixin(object):
 
         # test file attributes
         f_attrs = self.root_file.attrs
-        print("File Attribute Test")
         self.check_attrs(f_attrs)
 
         # test group attributes
         f_group = self.root_file["group"].attrs
-        print("Group Attribute Test")
         self.check_attrs(f_group)
 
         # test ds attributes
         f_ds = self.root_file["ds"].attrs
-        print("Dataset Attribute Test")
         self.check_attrs(f_ds)
         if not self.root_file.is_zarr:
             self.check_ds_attrs(f_ds)
