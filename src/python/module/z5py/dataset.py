@@ -309,9 +309,9 @@ class Dataset(object):
                                    compression, compression_options)
 
         # get the dataset and write data if necessary
-        print(path)
-        assert os.path.exists(path), path
+        print("Open dataset python")
         ds = cls(path, open_dataset(path, mode), n_threads)
+        print("Open dataset python done")
         if have_data:
             ds[:] = data
         return ds
